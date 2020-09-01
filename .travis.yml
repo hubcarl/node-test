@@ -1,0 +1,15 @@
+sudo: false
+os:
+  - linux
+  - osx
+language: node_js
+node_js:
+  - '6'
+  - '8'
+  - '10'
+  - '12'
+  - '14'
+script:
+  - npm test
+after_success:
+  - npm run ci
