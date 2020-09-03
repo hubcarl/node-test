@@ -14,6 +14,8 @@ before_install:
 install:
   - npminstall
   - find . -name  egg-cookies 2>/dev/null
+  - rm -rf ./node_modules/_egg@1.20.0@egg/node_modules/egg-cookies
+  - find . -name  egg-cookies 2>/dev/null
   - cp -r ./script/egg-cookies/lib/ ./node_modules/egg-cookies/lib/
   - cat ./node_modules/egg-cookies/lib/cookies.js
 script:
