@@ -20,14 +20,15 @@ const fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/; // eslint-di
 const sameSiteRegExp = /^(?:none|lax|strict)$/i;
 
 class Cookie {
-  constructor(name, value, attrs) {
+  constructor(name, value, attrs, logger) {
     assert(fieldContentRegExp.test(name), 'argument name is invalid');
     assert(!value || fieldContentRegExp.test(value), 'argument value is invalid');
 
+    this.logger = logger;
     this.name = name;
     this.value = value || '';
     this.attrs = mergeDefaultAttrs(attrs);
-    console.log('>>>init cookie attrs', attrs, this.attrs);
+    this.logger && this.logger.info('>>>init cookie attrs', attrs, this.attrs);
     assert(!this.attrs.path || fieldContentRegExp.test(this.attrs.path), 'argument option path is invalid');
     assert(!this.attrs.domain || fieldContentRegExp.test(this.attrs.domain), 'argument option domain is invalid');
     assert(!this.attrs.sameSite || this.attrs.sameSite === true || sameSiteRegExp.test(this.attrs.sameSite), 'argument option sameSite is invalid');
@@ -35,7 +36,7 @@ class Cookie {
       this.attrs.expires = new Date(0);
       // make sure maxAge is empty
       this.attrs.maxAge = null;
-      console.log('>>>init cookie', this.attrs.expires, this.attrs.maxAge);
+      this.logger && this.logger.info('>>>init cookie', this.attrs.expires, this.attrs.maxAge);
     }
   }
 
@@ -49,7 +50,7 @@ class Cookie {
     if (attrs.path) header += '; path=' + attrs.path;
     const maxAge = parseInt(attrs.maxAge, 10);
 
-    console.log('>>>toHeader', attrs.maxAge, maxAge);
+    this.logger && this.logger.info('>>>toHeader', attrs.maxAge, maxAge);
 
     // ignore 0, `session` and other invalid maxAge
     if (maxAge) {

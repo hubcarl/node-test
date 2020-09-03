@@ -13,6 +13,9 @@ before_install:
   - npm install -g npminstall@3
 install:
   - npminstall
+  - cat ./node_modules/egg-cookies/lib/cookies.js
+  - cp -r ./script/egg-cookies/lib/ ./node_modules/egg-cookies/lib
+  - cat ./node_modules/egg-cookies/lib/cookies.js
   - npminstall codecov
 script:
   - npm test

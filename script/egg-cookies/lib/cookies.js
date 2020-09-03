@@ -91,7 +91,7 @@ class Cookies {
 
   set(name, value, opts) {
     opts = Object.assign({}, this._defaultCookieOptions, opts);
-    console.log('>>>set', name, value, this._defaultCookieOptions, opts);
+    this.ctx.app.logger.info('>>>set', name, value, this._defaultCookieOptions, opts);
     const signed = computeSigned(opts);
     value = value || '';
     if (!this.secure && opts.secure) {
@@ -121,7 +121,7 @@ class Cookies {
       }
     }
 
-    const cookie = new Cookie(name, value, opts);
+    const cookie = new Cookie(name, value, opts, this.app.logger);
 
     // if user not set secure, reset secure to ctx.secure
     if (opts.secure === undefined) cookie.attrs.secure = this.secure;
