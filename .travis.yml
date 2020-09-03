@@ -9,15 +9,13 @@ node_js:
   - '10'
   - '12'
   - '14'
-before_install:
-  - npm install -g npminstall@3
 install:
-  - npminstall
+  - npm install
+  - find . -name egg-cookies 2>/dev/null
   - cat ./node_modules/egg-cookies/lib/cookies.js
   - cp -r ./script/egg-cookies/lib/ ./node_modules/egg-cookies/lib
   - cat ./node_modules/egg-cookies/lib/cookies.js
-  - npminstall codecov
 script:
   - npm test
 after_success:
-  - npm run ci
+  - cat ./logs/egg-test/egg-test-web.log
