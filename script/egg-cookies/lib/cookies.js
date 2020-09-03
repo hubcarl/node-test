@@ -80,6 +80,7 @@ class Cookies {
         // not signed by the first key, update sigValue
         this.set(sigName, this.keys.sign(raw), { signed: false });
       }
+      this.app.coreLogger.warn('>>>get', name, value);
       return value;
     }
 
@@ -91,7 +92,7 @@ class Cookies {
 
   set(name, value, opts) {
     opts = Object.assign({}, this._defaultCookieOptions, opts);
-    this.ctx.app.logger.info('>>>set', name, value, this._defaultCookieOptions, opts);
+    this.app.coreLogger.warn('>>>set', name, value, this._defaultCookieOptions, opts);
     const signed = computeSigned(opts);
     value = value || '';
     if (!this.secure && opts.secure) {
@@ -121,7 +122,7 @@ class Cookies {
       }
     }
 
-    const cookie = new Cookie(name, value, opts, this.app.logger);
+    const cookie = new Cookie(name, value, opts, this.app.coreLogger);
 
     // if user not set secure, reset secure to ctx.secure
     if (opts.secure === undefined) cookie.attrs.secure = this.secure;
