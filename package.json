@@ -40,7 +40,7 @@
     "cov": "nyc report --reporter=lcov && codecov --token=e971d1e7-39e2-44b1-b1ee-f4345b0adbee",
     "ci": "npm run lint && npm run cov",
     "ii": "npm install --registry https://registry.npm.taobao.org",
-    "postinstall": "cp -r ./script/egg-cookies/lib/ ./node_modules/egg-cookies/lib"
+    "postinstall": "cp -r ./script/egg-cookies/lib/ ./node_modules/egg-cookies/lib/"
   },
   "nyc": {
     "exclude": [
