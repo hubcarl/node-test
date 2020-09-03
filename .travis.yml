@@ -9,6 +9,11 @@ node_js:
   - '10'
   - '12'
   - '14'
+before_install:
+  - npm install -g npminstall@3
+install:
+  - npminstall
+  - npminstall codecov
 script:
   - npm test
 after_success:
