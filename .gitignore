@@ -3,3 +3,4 @@ node_modules
 coverage
 run
 logs
+.DS_Store

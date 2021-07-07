@@ -1,9 +1,9 @@
 'use strict';
 
-module.exports = function* () {
+module.exports = function *() {
   yield this.render('home.html', {
     user: {
-      name: 'sky',
-    },
+      name: 'sky'
+    }
   });
 };
