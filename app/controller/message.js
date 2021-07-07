@@ -1,3 +1,5 @@
+/* eslint-disable generator-star-spacing */
+/* eslint-disable require-yield */
 'use strict';
 
 module.exports = function* () {
