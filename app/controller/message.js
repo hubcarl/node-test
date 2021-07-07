@@ -14,6 +14,6 @@ module.exports = function* () {
     arguments4: this.gettext('%s %s %s %s', 1, 2, 3, 4),
     arguments5: this.__('%s %s %s %s %s', 1, 2, 3, 4, 5),
     arguments6: this.__('%s %s %s %s %s.', 1, 2, 3, 4, 5, 6),
-    values: this.__('{0} {1} {0} {1} {2} {100}', ['foo', 'bar']),
+    values: this.__('{0} {1} {0} {1} {2} {100}', ['foo', 'bar'])
   };
 };
